@@ -21,6 +21,8 @@ const Countries = () => {
                   <li className="lg:mt-[40px]">India</li>
                   <li className="lg:mt-[40px]">China</li>
                   <li className="lg:mt-[40px]">Afghanistan</li>
+                  <li className="lg:mt-[40px]">Afghanistan</li>
+                  <li className="lg:mt-[40px]">Afghanistan</li>
                 </ul>
                 <ul className="">
                   <li className="lg:mt-[40px]">
