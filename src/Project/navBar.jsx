@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 const NavBar = ({ hide, setHide }) => {
   return (
     <>
-      <div className="bg-burlyWood w-full lg:h-24">
+      <div className="bg-burlyWood  lg:h-24 w-screen">
         <ul className=" list-none">
           <li className="flex justify-between">
             <li className="flex">
