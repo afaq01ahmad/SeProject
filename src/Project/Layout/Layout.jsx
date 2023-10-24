@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
   const [hide, setHide] = useState(true);
 
   return (
-    <div>
+    <div> 
       <div>
         <NavBar hide={hide} setHide={setHide} />
         <div className="flex ">
