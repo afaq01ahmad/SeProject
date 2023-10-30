@@ -1,13 +1,10 @@
 import Layout from "./Layout/Layout";
-import NavBar from "./navBar";
-import SideBar from "./sidebar";
 
 const Contact = () => {
   return (
     <>
       <Layout>
         <div className="flex">
-          <div className="">{/* <SideBar /> */}</div>
           <div className="sm:ml-[10px]  sm:mt-[20px] lg:ml-[50px] text-left">
             <h1 className="font-bold sm:text-[15px] md:text-2xl">Contact Us</h1>
             <p className="sm:text-[12px] md:text-lg sm:mt-[20px] md:mt-[30px] md:ml-[30px]">

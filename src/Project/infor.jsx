@@ -1,10 +1,8 @@
 import React from "react";
-import NavBar from "./navBar";
 
 const CountryInfo = ({ country }) => {
   return (
     <div>
-      {/* <NavBar /> */}
       <h2>Country Information</h2>
       <p>Country: {country.name}</p>
       <p>Population: {country.population}</p>
