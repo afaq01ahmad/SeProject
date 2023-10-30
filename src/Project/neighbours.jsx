@@ -4,9 +4,8 @@ import Layout from "./Layout/Layout";
 
 function Neighbours() {
    const [countries, setCountries] = useState([]);
-
-    useEffect(() => {
-        fetch('https://restcountries.com/v3.1/all')
+  const fetching = () => {
+    fetch('https://restcountries.com/v3.1/all')
             .then((res) => {
                 if (res.ok) {
                     return res.json();
@@ -19,6 +18,11 @@ function Neighbours() {
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
+}
+  
+  
+    useEffect(() => {
+      fetching();
     }, []);
 
   return (
