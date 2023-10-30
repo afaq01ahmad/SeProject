@@ -1,5 +1,3 @@
-import SideBar from "./sidebar";
-import NavBar from "./navBar";
 import Layout from "./Layout/Layout";
 
 const Profile = () => {

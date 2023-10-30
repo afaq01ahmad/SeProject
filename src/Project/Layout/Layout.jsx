@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import NavBar from "../navBar";
 import SideBar from "../sidebar";
-import SideBarMbl from "../sideBarMbl";
-import HomePage from "../home";
+import SideBarMbl from "../sideBarMbl"
 
-// Pass the child props
 const Layout = ({ children }) => {
   const [hide, setHide] = useState(true);
 
@@ -25,7 +23,6 @@ const Layout = ({ children }) => {
         </div>
       </div>
 
-      {/* {<HomePage />} */}
     </div>
   );
 };

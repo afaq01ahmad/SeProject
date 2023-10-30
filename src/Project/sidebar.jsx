@@ -6,7 +6,7 @@ const SideBar = () => {
   const [hide, setHide] = useState(true);
   return (
     <div
-      className={`sm:h-[calc(100vh-66px)] md:h-[calc(100vh-80px)] lg:h-[calc(100vh-96px)] bg-sideBarColor`}
+      className={`sm:h-screen md:h-screen lg:h-full bg-sideBarColor`}
     >
       <div className={`lg:w-[14vw] lg:pl-[10px] sm:ml-0 text-xl`}>
         <Link to="/">
