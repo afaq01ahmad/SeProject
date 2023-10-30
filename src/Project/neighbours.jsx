@@ -4,7 +4,7 @@ import Layout from "./Layout/Layout";
 
 function Neighbours() {
    const [countries, setCountries] = useState([]);
-  const fetching = () => {
+  const fetchCountries = () => {
     fetch('https://restcountries.com/v3.1/all')
             .then((res) => {
                 if (res.ok) {
@@ -22,7 +22,7 @@ function Neighbours() {
   
   
     useEffect(() => {
-      fetching();
+      fetchCountries();
     }, []);
 
   return (
