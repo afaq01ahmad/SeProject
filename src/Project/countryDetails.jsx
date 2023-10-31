@@ -27,11 +27,7 @@ const CountryDetail = () => {
     useEffect(() => {
       fetchCountries();
     }, []);
-  const wait = () => {
-    if (isLoading) {
-      return <p>Loading...</p>;
-    }
-  }
+ 
 
     return (
         <>
