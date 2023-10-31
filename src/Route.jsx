@@ -8,6 +8,7 @@ import Contact from "./Project/contact";
 
 import { useState } from "react";
 import HomePage from "./Project/home";
+import CountryDetail from "./Project/countryDetails";
 
 const Router = () => {
   const [hide, setHide] = useState(true);
@@ -22,6 +23,8 @@ const Router = () => {
           <Route path="/neighbours" element={<Neighbours />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/countriesdetails/:id" element={<CountryDetail />} />
+
         </Routes>
       </div>
     </>
