@@ -16,7 +16,6 @@ function Neighbours() {
             .then((data) => {
                 const firstTwentyCountries = data.slice(0, 20);
               setCountries(firstTwentyCountries);
-              console.log(firstTwentyCountries);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);

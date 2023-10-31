@@ -7,7 +7,7 @@ import { Link, useParams } from "react-router-dom";
 const CountryDetail = () => {
   const state = useParams();
   const [countries, setCountries] = useState([]);
-  const [ loading, setLoading ] = useState(true);
+  const [ isLoading, setIsLoading ] = useState(true);
     const fetchCountries = () => {
         fetch(`https://restcountries.com/v3.1/name/${state.id}/`)
             .then((res) => {
@@ -17,18 +17,18 @@ const CountryDetail = () => {
             })
           .then((data) => {
               setCountries(data);
-              setLoading(false); 
+              setIsLoading(false); 
             })
             .catch((error) => {
               console.error('Error fetching data:', error);
-              setLoading(false); 
+              setIsLoading(false); 
             });
     }
     useEffect(() => {
       fetchCountries();
     }, []);
   const wait = () => {
-    if (loading) {
+    if (isLoading) {
       return <p>Loading...</p>;
     }
   }
@@ -41,11 +41,11 @@ const CountryDetail = () => {
           </Link>
           <div>
             <div className="sm:p-2 md:p-3 sm:mt-2 md:m-2 md:ml-[40vw] lg:mt-[1vh] sm:ml-6">
-              {wait()}
+              {isLoading?'Loading........':""}
             </div>
-            {countries.map((country, index) => (
+            {countries.map((country, key) => (
               <div>
-              <div key={index} className="sm:p-2 md:p-3 sm:mt-2 md:m-2 md:ml-[20vw] lg:ml-[30vw] sm:ml-6 sm:w-[80vw] md:w-[50vw] lg:w-[20vw]">
+              <div key={country.name.official} className="sm:p-2 md:p-3 sm:mt-2 md:m-2 md:ml-[20vw] lg:ml-[30vw] sm:ml-6 sm:w-[80vw] md:w-[50vw] lg:w-[20vw]">
                 
                       <img src={country.flags.png} alt="" className="h-40 w-full"/>
                     <br />
