@@ -11,15 +11,17 @@ const Layout = ({ children }) => {
       <div>
         <NavBar hide={hide} setHide={setHide} />
         <div className="flex ">
-          <div className="flex">
-            <div className="sm:hidden lg:block">
+          <div className="flex sm:mt-[89px] md:mt-[104px] lg:mt-24">
+            <div className="sm:hidden lg:block fixed">
               <SideBar />
             </div>
-            <div className="sm:block lg:hidden">
+            <div className="sm:block lg:hidden sm:fixed">
               <SideBarMbl hide={hide} setHide={setHide} />
             </div>
+            <div className="lg:ml-[15vw]">
             {children}
-          </div>
+            </div>
+            </div>
         </div>
       </div>
 
