@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import NavBar from "../navBar";
-import SideBar from "../sidebar";
-import SideBarMbl from "../sideBarMbl"
+import NavBar from "../NavBar";
+import SideBar from "../Sidebar";
+import SideBarMbl from "../SideBarMbl"
 
 const Layout = ({ children }) => {
   const [hide, setHide] = useState(true);

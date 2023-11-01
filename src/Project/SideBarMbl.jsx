@@ -1,4 +1,4 @@
-import SideBar from "./sidebar";
+import SideBar from "./Sidebar";
 
 const SideBarMbl = ({ hide, setHide }) => {
   return (
