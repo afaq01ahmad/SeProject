@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "../NavBar";
 import SideBar from "../Sidebar";
-import SideBarMbl from "../SideBarMbl"
+import SideBarMbl from "../SideBarMbl";
 
 const Layout = ({ children }) => {
   const [hide, setHide] = useState(true);
@@ -18,13 +18,10 @@ const Layout = ({ children }) => {
             <div className="sm:block lg:hidden sm:fixed">
               <SideBarMbl hide={hide} setHide={setHide} />
             </div>
-            <div className="lg:ml-[15vw]">
-            {children}
-            </div>
-            </div>
+            <div className="lg:ml-[15vw]">{children}</div>
+          </div>
         </div>
       </div>
-
     </div>
   );
 };

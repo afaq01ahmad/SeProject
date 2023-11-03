@@ -19,12 +19,22 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/profiledetails" element={<Profile />} />
-          <Route path="/countries" element={<Countries />} />
-          <Route path="/neighbours" element={<Neighbours />} />
+          <Route path="/countries">
+            <Route index element={<Countries />} />
+            <Route
+              path="countriesdetails/:name/:id"
+              element={<CountryDetail />}
+            />
+          </Route>
+          <Route path="/neighbours">
+            <Route index element={<Neighbours />} />
+            <Route
+              path="countriesdetails/:name/:id"
+              element={<CountryDetail />}
+            />
+          </Route>
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/countriesdetails/:name/:id" element={<CountryDetail />} />
-
         </Routes>
       </div>
     </>

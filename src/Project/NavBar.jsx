@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const NavBar = ({ hide, setHide }) => {
+  const location = useLocation();
+
   return (
     <>
       <div className="bg-burlyWood  lg:h-24 w-screen fixed !overflow-hidden">
@@ -20,12 +22,22 @@ const NavBar = ({ hide, setHide }) => {
             </li>
             <li className="w-30 flex sm:gap-1 md:gap-2">
               <li className=" sm:mt-[20px] sm:text-[12px] text-xl md:text-[18px] md:mt-[25px] lg:text-[25px] lg:mt-[38px] text-word ">
-                <Link to="/about" className="hover:text-brown ">
+                <Link
+                  to="/about"
+                  className={`hover:text-brown ${
+                    location.pathname === "/about" && "text-red-400"
+                  } `}
+                >
                   About
                 </Link>
               </li>
               <li className="sm:mt-[20px] sm:text-[12px] text-xl md:text-[18px] md:mt-[25px] lg:text-[25px] lg:mt-[38px] text-word ">
-                <Link to="/contact" className="hover:text-brown">
+                <Link
+                  to="/contact"
+                  className={`hover:text-brown ${
+                    location.pathname === "/contact" && "text-red-400"
+                  }`}
+                >
                   Contact
                 </Link>
               </li>
