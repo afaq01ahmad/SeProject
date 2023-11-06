@@ -10,6 +10,7 @@ const CountryDetail = () => {
   console.log(link);
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const NODATA = "No Data Available";
 
   const fetchCountries = async () => {
     try {
@@ -30,7 +31,6 @@ const CountryDetail = () => {
   useEffect(() => {
     fetchCountries();
   }, []);
-  const noData = "No Data Available";
 
   return (
     <>
@@ -54,16 +54,16 @@ const CountryDetail = () => {
                   />
                   <br />
                   <strong>Name:</strong>{" "}
-                  {country.name.common ? country.name.common : noData}
+                  {country.name.common ? country.name.common : NODATA}
                   <br />
                   <strong>Official Name:</strong>{" "}
-                  {country.name.official ? country.name.official : noData}
+                  {country.name.official ? country.name.official : NODATA}
                   <br />
                   <strong>Continent:</strong>{" "}
-                  {country.continents ? country.continents : noData}
+                  {country.continents ? country.continents : NODATA}
                   <br />
                   <strong>Capital:</strong>
-                  {country.capital ? country.capital : noData}
+                  {country.capital ? country.capital : NODATA}
                   <br />
                   <strong>Currencies:</strong>
                   {country.currencies
@@ -71,35 +71,35 @@ const CountryDetail = () => {
                       Object.values(country.currencies)
                         .map((currency) => currency.name)
                         .join(", ")
-                    : noData}
+                    : NODATA}
                   <div className="break-all">
                     <strong>Location:</strong>
                     {country.maps
                       ? country.maps && country.maps.googleMaps
-                      : noData}
+                      : NODATA}
                   </div>
                   <strong>Languages:</strong>
                   {country.languages
                     ? country.languages &&
                       Object.values(country.languages).map(Object).join(", ")
-                    : noData}
+                    : NODATA}
                   <br />
                   <strong>Region:</strong>
-                  {country.region ? country.region : noData}
+                  {country.region ? country.region : NODATA}
                   <br />
                   <strong>Sub Region:</strong>
-                  {country.subregion ? country.subregion : noData}
+                  {country.subregion ? country.subregion : NODATA}
                   <br />
                   <strong>Neighbours:</strong>
-                  {country.borders ? country.borders.join(", ") : noData}
+                  {country.borders ? country.borders.join(", ") : NODATA}
                   <br />
-                  <strong>Area:</strong> {country.area ? country.area : noData}
+                  <strong>Area:</strong> {country.area ? country.area : NODATA}
                   <br />
                   <strong>Population:</strong>
-                  {country.population ? country.population : noData}
+                  {country.population ? country.population : NODATA}
                   <br />
                   <strong>Time Zones:</strong>
-                  {country.timezones ? country.timezones : noData}
+                  {country.timezones ? country.timezones : NODATA}
                 </div>
               ))
             )}
