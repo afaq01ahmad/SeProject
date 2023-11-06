@@ -3,7 +3,7 @@ import Layout from "./Layout/Layout";
 import { Link } from "react-router-dom";
 import { COUNTRIES, COUNTRIESDETAILS } from "./Links";
 
-function Countries() {
+const Countries = () => {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -66,6 +66,6 @@ function Countries() {
       </Layout>
     </div>
   );
-}
+};
 
 export default Countries;

@@ -3,7 +3,7 @@ import Layout from "./Layout/Layout";
 import { Link } from "react-router-dom";
 import { COUNTRIES, COUNTRIESDETAILS, NEIGHBORS } from "./Links";
 
-function Neighbours() {
+const Neighbours = () => {
   const [countries, setCountries] = useState([]);
   const [neighbour, setNeighbour] = useState([]);
   const [card, setCard] = useState(null);
@@ -138,6 +138,6 @@ function Neighbours() {
       </Layout>
     </div>
   );
-}
+};
 
 export default Neighbours;
