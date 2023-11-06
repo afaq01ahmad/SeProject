@@ -1,14 +1,20 @@
 import { Route, Routes } from "react-router-dom";
-
 import Profile from "./Project/Profile";
 import Countries from "./Project/Countries";
 import Neighbours from "./Project/Neighbours";
 import About from "./Project/About";
 import Contact from "./Project/Contact";
-
 import { useState } from "react";
 import HomePage from "./Project/Home";
 import CountryDetail from "./Project/CountryDetails";
+import {
+  ABOUT,
+  CONTACT,
+  COUNTRIES,
+  COUNTRIESDETAILS,
+  NEIGHBORS,
+  PROFILEDETAILS,
+} from "./Project/Links";
 
 const Router = () => {
   const [hide, setHide] = useState(true);
@@ -18,23 +24,23 @@ const Router = () => {
       <div className="w-[100vw]">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/profiledetails" element={<Profile />} />
-          <Route path="/countries">
+          <Route path={PROFILEDETAILS} element={<Profile />} />
+          <Route path={COUNTRIES}>
             <Route index element={<Countries />} />
             <Route
               path="countriesdetails/:name/:id"
               element={<CountryDetail />}
             />
           </Route>
-          <Route path="/neighbours">
+          <Route path={NEIGHBORS}>
             <Route index element={<Neighbours />} />
             <Route
               path="countriesdetails/:name/:id"
               element={<CountryDetail />}
             />
           </Route>
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path={ABOUT} element={<About />} />
+          <Route path={CONTACT} element={<Contact />} />
         </Routes>
       </div>
     </>

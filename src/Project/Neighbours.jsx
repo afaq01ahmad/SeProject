@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout/Layout";
 import { Link } from "react-router-dom";
+import { COUNTRIES, COUNTRIESDETAILS, NEIGHBORS } from "./Links";
 
 function Neighbours() {
   const [countries, setCountries] = useState([]);
@@ -8,82 +9,76 @@ function Neighbours() {
   const [card, setCard] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [renderedNeighbours, setRenderedNeighbours] = useState([]);
 
-  const fetchCountries = () => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((data) => {
+  const fetchCountries = async () => {
+    try {
+      const response = await fetch("https://restcountries.com/v3.1/all");
+      if (response.ok) {
+        const data = await response.json();
         setCountries(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
     fetchCountries();
   }, []);
 
-  const arrayFunction = (countryNeighbors) => {
-    if (countryNeighbors) {
-      return countryNeighbors;
-    }
-    return null;
-  };
-
-  const handleSearch = () => {
+  const handleSearch = async () => {
     setNeighbour([]);
     setCard(null);
-    fetch(`https://restcountries.com/v3.1/name/${searchInput}`)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((data) => {
+
+    try {
+      const res = await fetch(
+        `https://restcountries.com/v3.1/name/${searchInput}`
+      );
+      if (res.ok) {
+        const data = await res.json();
         setCard(data);
         setIsLoading(false);
 
-        const arrayData = arrayFunction(data?.[0]?.borders);
+        const arrayData = data?.[0]?.borders;
 
         for (let j = 0; j < arrayData.length; j++) {
           if (arrayData[j]) {
-            fetch(`https://restcountries.com/v3.1/alpha/${arrayData[j]}`)
-              .then((res) => {
-                if (res.ok) {
-                  return res.json();
-                }
-              })
-              .then((data) => {
-                setNeighbour((prevNeighbour) => [...prevNeighbour, data]);
-              })
-              .catch((error) => {
-                console.error("Error fetching neighbor data:", error);
-              });
+            try {
+              const res = await fetch(
+                `https://restcountries.com/v3.1/alpha/${arrayData[j]}`
+              );
+              if (res.ok) {
+                const neighborData = await res.json();
+                setNeighbour((prevNeighbour) => [
+                  ...prevNeighbour,
+                  neighborData,
+                ]);
+              }
+            } catch (error) {
+              console.error("Error fetching neighbor data:", error);
+            }
           }
         }
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setIsLoading(false);
-      });
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setIsLoading(false);
+    }
   };
+
   const mapNeighbours = () => {
     return (
-      <div className="sm:ml-0 md:ml-0 flex flex-wrap">
-        {neighbour.map((one, idx) => (
-          <div key={idx}>
-            {one.map((country, index) => (
+      <div className="sm:ml-0 md:ml-0 lg:ml-24 flex flex-wrap">
+        {neighbour.map((neighbours, index) => (
+          <div key={index}>
+            {neighbours.map((country, index) => (
               <div
                 key={index}
                 className="sm:p-2 md:p-3 sm:mt-2 h-[30vh] md:m-2 sm:w-[250px] md:w-[335px]"
               >
                 <Link
-                  to={`/neighbours/countriesdetails/name/${country.name.official}`}
+                  to={`${NEIGHBORS}${COUNTRIESDETAILS(country.name.official)}`}
                 >
                   <div className="h-40 w-full">
                     <img
@@ -105,46 +100,40 @@ function Neighbours() {
     );
   };
 
+  useEffect(() => {
+    setRenderedNeighbours(mapNeighbours());
+  }, [neighbour]);
+
   return (
     <div>
       <Layout>
-        <h1 className="sm:ml-6 sm:mt-20 sm:mb-5 font-bold text-3xl">
-          Neighbours List
-        </h1>
-        <div className="sm:ml-2 md:ml-20 mb-5">
-          Please Enter Country's Official Name
-        </div>
-
-        <div className="flex flex-wrap sm:ml-2 md:ml-20">
-          <input
-            type="text"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Search Country to look for its neighbours"
-            className="border p-2 sm:w-50 md:w-96 mb-5"
-          />
-          <button
-            className="ml-2 px-4 py-2 bg-blue-500 mb-5 text-white bg-black rounded"
-            onClick={handleSearch}
-          >
-            Search
-          </button>
-        </div>
-        <div className="flex">
-          <div className="sm:ml-0 md:ml-0 flex flex-wrap">
-            {!card ? (
-              <div className="ml-20">loading......</div>
-            ) : (
-              card?.map((country, index) => (
-                <div
-                  key={index}
-                  className="sm:p-2 md:p-3 sm:mt-2 h-[30vh] md:m-2"
-                ></div>
-              ))
-            )}
+        <div className="lg:ml-10">
+          <h1 className="sm:ml-2 md:ml-8 sm:mt-20 sm:mb-5 font-bold text-3xl">
+            Neighbours List
+          </h1>
+          <div className="sm:ml-2 md:ml-8 mb-5">
+            Please Enter Country's Official Name
           </div>
 
-          {mapNeighbours()}
+          <div className="flex flex-wrap sm:ml-2 md:ml-8">
+            <input
+              type="text"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Search Country to look for its neighbours"
+              className="border p-2 sm:w-50 md:w-96 mb-5"
+            />
+            <button
+              className="ml-2 px-4 py-2 bg-blue-500 mb-5 text-white bg-black rounded"
+              onClick={handleSearch}
+            >
+              Search
+            </button>
+          </div>
+        </div>
+
+        <div className="sm:ml-0 md:ml-0 lg:ml-24 flex flex-wrap">
+          {renderedNeighbours}
         </div>
       </Layout>
     </div>

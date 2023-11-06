@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { COUNTRIES, NEIGHBORS } from "./Links";
 
 const SideBar = () => {
   const [open, setOpen] = useState(true);
@@ -23,7 +24,7 @@ const SideBar = () => {
           </h4>
         </Link>
         <div>
-          <Link to="/countries">
+          <Link to={COUNTRIES}>
             <h4
               onClick={() => {
                 setOpen(!open);
@@ -38,7 +39,7 @@ const SideBar = () => {
           </Link>
         </div>
         <div>
-          <Link to="/neighbours">
+          <Link to={NEIGHBORS}>
             <h4
               onClick={() => {
                 setOpen(!open);

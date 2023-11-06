@@ -18,7 +18,9 @@ const Layout = ({ children }) => {
             <div className="sm:block lg:hidden sm:fixed">
               <SideBarMbl hide={hide} setHide={setHide} />
             </div>
-            <div className="lg:ml-[15vw]">{children}</div>
+            <div className="lg:ml-[100px] xl:ml-[270px] sm:ml-[20px] mt-3">
+              {children}
+            </div>
           </div>
         </div>
       </div>

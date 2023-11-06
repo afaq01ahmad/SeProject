@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { ABOUT, CONTACT, PROFILEDETAILS } from "./Links";
 const NavBar = ({ hide, setHide }) => {
   const location = useLocation();
 
@@ -23,7 +24,7 @@ const NavBar = ({ hide, setHide }) => {
             <li className="w-30 flex sm:gap-1 md:gap-2">
               <li className=" sm:mt-[20px] sm:text-[12px] text-xl md:text-[18px] md:mt-[25px] lg:text-[25px] lg:mt-[38px] text-word ">
                 <Link
-                  to="/about"
+                  to={ABOUT}
                   className={`hover:text-brown ${
                     location.pathname === "/about" && "text-red-400"
                   } `}
@@ -33,7 +34,7 @@ const NavBar = ({ hide, setHide }) => {
               </li>
               <li className="sm:mt-[20px] sm:text-[12px] text-xl md:text-[18px] md:mt-[25px] lg:text-[25px] lg:mt-[38px] text-word ">
                 <Link
-                  to="/contact"
+                  to={CONTACT}
                   className={`hover:text-brown ${
                     location.pathname === "/contact" && "text-red-400"
                   }`}
@@ -43,7 +44,7 @@ const NavBar = ({ hide, setHide }) => {
               </li>
 
               <li>
-                <Link to="/profiledetails">
+                <Link to={PROFILEDETAILS}>
                   <img
                     className="rounded-full sm:h-[40px] sm:w-[40px] md:h-[50px] md:w-[50px] md:mt-[16px] lg:h-[60px] lg:w-[60px] lg:mt-[20px] sm:mt-[14px] sm:mr-1 md:mr-3 "
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkltmd_BJbbnsKJj2kLvP0spPct8zP24HIAjp9qo&s"
