@@ -14,14 +14,14 @@ import {
   COUNTRIESDETAILS,
   NEIGHBORS,
   PROFILEDETAILS,
-} from "./Project/Links";
+} from "./Project/Consants/Links";
 
 const Router = () => {
   const [hide, setHide] = useState(true);
 
   return (
     <>
-      <div className="w-[100vw]">
+      <div className="w-[98vw]">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path={PROFILEDETAILS} element={<Profile />} />

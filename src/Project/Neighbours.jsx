@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout/Layout";
 import { Link } from "react-router-dom";
-import { COUNTRIES, COUNTRIESDETAILS, NEIGHBORS } from "./Links";
+import { COUNTRIES, COUNTRIESDETAILS, NEIGHBORS } from "./Consants/Links";
 
 const Neighbours = () => {
   const [countries, setCountries] = useState([]);

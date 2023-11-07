@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout/Layout";
 import { Link } from "react-router-dom";
-import { COUNTRIES, COUNTRIESDETAILS } from "./Links";
+import { COUNTRIES, COUNTRIESDETAILS } from "./Consants/Links";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [organizedCountries, setOrganizedCountries] = useState({});
+  const [selectedContinent, setSelectedContinent] = useState(null);
 
   const fetchCountries = async () => {
     try {
@@ -13,6 +15,7 @@ const Countries = () => {
       if (response.ok) {
         const data = await response.json();
         const firstTwentyCountries = data.slice(0, 20);
+
         setCountries(firstTwentyCountries);
       }
     } catch (error) {
@@ -26,41 +29,97 @@ const Countries = () => {
     fetchCountries();
   }, []);
 
+  const organizeByContinent = (countries) => {
+    return countries.reduce((acc, country) => {
+      const continent = country.continents;
+      if (!acc[continent]) {
+        acc[continent] = [];
+      }
+      acc[continent].push(country);
+      return acc;
+    }, {});
+  };
+
+  useEffect(() => {
+    const organized = organizeByContinent(countries);
+    setOrganizedCountries(organized);
+  }, [countries]);
+
+  const handleContinentClick = (continent) => {
+    setSelectedContinent(continent);
+  };
+
   return (
     <div>
       <Layout>
         <div className="lg:ml-16 xl:ml-0">
-          <h1 className="sm:m-0 font-bold text-3xl">List of Countries</h1>
-          <div className="sm:p-2 md:p-3 sm:mt-2 md:m-2 md:ml-[40%] sm:ml-6">
-            {isLoading ? "Loading........" : ""}
-          </div>
-          <div className="sm:ml-0 md:ml-0 flex flex-wrap">
-            {countries.map((country, index) => (
-              <Link
-                to={`${COUNTRIES}${COUNTRIESDETAILS(country.name.official)}`}
-              >
-                <div
-                  key={index}
-                  className="border border-black sm:p-2 md:p-3 sm:mt-2 h-[30vh] md:m-2 sm:w-[250px] md:w-[335px]"
-                >
-                  <div className="h-40 w-full">
-                    <img
-                      src={country.flags.png}
-                      alt=""
-                      className="h-40 w-full"
-                    />
-                  </div>
-                  <div>
-                    <strong>Name:</strong> {country.name.official}{" "}
-                    {country.flag}
-                  </div>
+          <h1 className="font-bold text-3xl">List of Countries</h1>
+          <div className="p-3">{isLoading ? "Loading........" : ""}</div>
 
-                  <div>
-                    <strong>Continent:</strong> {country.continents}
-                  </div>
-                </div>
-              </Link>
+          <div className="flex flex-wrap">
+            {Object.keys(organizedCountries).map((continent, index) => (
+              <button
+                key={index}
+                className="border bg-black text-white rounded-2xl w-[150px] p-2 focus:bg-blue mb-4 md:mr-4"
+                onClick={() => handleContinentClick(continent)}
+              >
+                {continent}
+              </button>
             ))}
+          </div>
+
+          <div className="lg:flex lg:flex-wrap">
+            {selectedContinent
+              ? organizedCountries[selectedContinent].map(
+                  (country, countryIndex) => (
+                    <Link
+                      key={countryIndex}
+                      to={`${COUNTRIES}${COUNTRIESDETAILS(
+                        country.name.official
+                      )}`}
+                    >
+                      <div className="p-3 md:mr-2 sm:w-full md:w-72 lg:w-full ">
+                        <div className="h-40">
+                          <img
+                            src={country.flags.png}
+                            alt=""
+                            className="h-full w-[320px] object-cover"
+                          />
+                        </div>
+                        <div>
+                          <strong>Name:</strong> {country.name.official}
+                        </div>
+                        <div>
+                          <strong>Continent:</strong> {country.continents}
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                )
+              : countries.map((country, countryIndex) => (
+                  <Link
+                    key={countryIndex}
+                    to={`${COUNTRIES}${COUNTRIESDETAILS(
+                      country.name.official
+                    )}`}
+                  >
+                    <div className="p-3 md:mr-2 sm:w-full md:w-72 lg:w-full ">
+                      <div className="h-40">
+                        <img
+                          src={country.flags.png}
+                          alt=""
+                          className="h-full w-[320px] object-cover"
+                        />
+                      </div>
+                      <div>
+                        <strong>Name:</strong> {country.name.official}
+                      </div>
+                      <div>
+                        <strong>Continent:</strong> {country.continents}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
           </div>
         </div>
       </Layout>

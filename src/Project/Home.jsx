@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <>
       <Layout>
-        <div className=" sm:!overflow-y-auto lg:!overflow-hidden w-full sm:h-[calc(100vh-66px)] md:h-[calc(100vh-96px)]  ">
+        <div className="lg:ml-10 xl:-ml-1 sm:!overflow-y-auto lg:!overflow-hidden w-full sm:h-[calc(100vh-66px)] md:h-[calc(100vh-96px)]  ">
           <div className="  sm:ml-[3px] md:ml-[10px] text-left">
             <h2 className="text-word  sm:text-[15px] md:text-xl font-bold ">
               Home

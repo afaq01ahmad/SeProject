@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import Layout from "./Layout/Layout";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { IMAGE } from "./Consant";
+import { IMAGE } from "./Consants/Consant";
 
 const CountryDetail = () => {
   const { id, name } = useParams();
   const loc = useLocation();
   const link = loc.pathname.split("/")[1];
-  console.log(link);
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const NODATA = "No Data Available";

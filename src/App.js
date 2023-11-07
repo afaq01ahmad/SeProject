@@ -1,10 +1,13 @@
-import './App.css';
-import Router from './Route';
+import "./App.css";
+import AppProvider from "./Project/Context/AppProvider";
+import Router from "./Route";
 
 function App() {
   return (
     <div className="App">
-      <Router />
+      <AppProvider>
+        <Router />
+      </AppProvider>
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-import { ABOUT, CONTACT, PROFILEDETAILS } from "./Links";
+import { ABOUT, CONTACT, PROFILEDETAILS } from "./Consants/Links";
+import { useContext } from "react";
+import AppContext from "./Context/AppContext";
 const NavBar = ({ hide, setHide }) => {
   const location = useLocation();
-
+  const { userName } = useContext(AppContext);
   return (
     <>
       <div className="bg-burlyWood  lg:h-24 w-screen fixed !overflow-hidden">
@@ -14,10 +16,9 @@ const NavBar = ({ hide, setHide }) => {
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAAWv04UdeUuJVJBhOm811MstRLl4ZTFKxq07qloMCNNGAhh5DQSVWcDCdRcD45HZO_y0&usqp=CAU"
                 alt="Logo"
               />
-              <li className="sm:text-[12px]  sm:mt-[25px] sm: ml-[-7px] md:text-[18px] md:mt-[28px]  lg:text-[25px]  lg:mt-[33px] text-word">
+              <li className="sm:text-[12px] sm:w-20 sm:mt-[20px] md:w-auto sm: ml-[-7px] md:text-[18px] md:mt-[28px]  lg:text-[25px]  lg:mt-[33px] text-word">
                 <Link to="/" className="hover:text-brown">
-                  {" "}
-                  Find Country Details{" "}
+                  Find Country Details
                 </Link>
               </li>
             </li>
@@ -45,10 +46,15 @@ const NavBar = ({ hide, setHide }) => {
 
               <li>
                 <Link to={PROFILEDETAILS}>
-                  <img
-                    className="rounded-full sm:h-[40px] sm:w-[40px] md:h-[50px] md:w-[50px] md:mt-[16px] lg:h-[60px] lg:w-[60px] lg:mt-[20px] sm:mt-[14px] sm:mr-1 md:mr-3 "
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkltmd_BJbbnsKJj2kLvP0spPct8zP24HIAjp9qo&s"
-                  />
+                  <div className="flex">
+                    <div className="sm:mt-[20px] sm:text-[12px] mr-2 text-xl md:text-[18px] md:mt-[25px] lg:text-[25px] lg:mt-[38px] text-word ">
+                      {userName}
+                    </div>
+                    <img
+                      className="rounded-full sm:h-[40px] sm:w-[40px] md:h-[50px] md:w-[50px] md:mt-[16px] lg:h-[60px] lg:w-[60px] lg:mt-[20px] sm:mt-[14px] sm:mr-1 md:mr-3 "
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkltmd_BJbbnsKJj2kLvP0spPct8zP24HIAjp9qo&s"
+                    />
+                  </div>
                 </Link>
               </li>
             </li>
