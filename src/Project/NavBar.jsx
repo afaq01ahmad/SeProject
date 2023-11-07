@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ABOUT, CONTACT, PROFILEDETAILS } from "./Consants/Links";
 import { useContext } from "react";
 import AppContext from "./Context/AppContext";
+import { PROFILE_IMAGE } from "./Consants/Consant";
 const NavBar = ({ hide, setHide }) => {
   const location = useLocation();
   const { userName } = useContext(AppContext);
@@ -52,7 +53,7 @@ const NavBar = ({ hide, setHide }) => {
                     </div>
                     <img
                       className="rounded-full sm:h-[40px] sm:w-[40px] md:h-[50px] md:w-[50px] md:mt-[16px] lg:h-[60px] lg:w-[60px] lg:mt-[20px] sm:mt-[14px] sm:mr-1 md:mr-3 "
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkltmd_BJbbnsKJj2kLvP0spPct8zP24HIAjp9qo&s"
+                      src={PROFILE_IMAGE}
                     />
                   </div>
                 </Link>
