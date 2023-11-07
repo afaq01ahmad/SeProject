@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ABOUT, CONTACT, PROFILEDETAILS } from "./Consants/Links";
 import { useContext } from "react";
 import AppContext from "./Context/AppContext";
-import { PROFILE_IMAGE } from "./Consants/Consant";
+import { LOGO, PROFILE_IMAGE } from "./Consants/Consant";
 const NavBar = ({ hide, setHide }) => {
   const location = useLocation();
   const { userName } = useContext(AppContext);
@@ -14,7 +14,7 @@ const NavBar = ({ hide, setHide }) => {
             <li className="flex">
               <img
                 className="sm:w-[60px] sm:h-[60px] md:w-[75px] md:h-[75px]  lg:w-[90px] lg:h-[90px] p-[10px] sm:ml-[-7px] sm:mt-[5px]  rounded-full"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAAWv04UdeUuJVJBhOm811MstRLl4ZTFKxq07qloMCNNGAhh5DQSVWcDCdRcD45HZO_y0&usqp=CAU"
+                src={LOGO}
                 alt="Logo"
               />
               <li className="sm:text-[12px] sm:w-20 sm:mt-[20px] md:w-auto sm: ml-[-7px] md:text-[18px] md:mt-[28px]  lg:text-[25px]  lg:mt-[33px] text-word">
