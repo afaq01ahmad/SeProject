@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "./Layout/Layout";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { IMAGE } from "./Consants/Consant";
+import { BACKWARD_IMAGE } from "./Consants/Consant";
 
 const CountryDetail = () => {
   const { id, name } = useParams();
@@ -35,7 +35,7 @@ const CountryDetail = () => {
     <>
       <Layout>
         <Link to={`/${link}`}>
-          <img src={IMAGE} alt="" className="w-12 h-12 ml-4 " />
+          <img src={BACKWARD_IMAGE} alt="" className="w-12 h-12 ml-4 " />
         </Link>
         <div className="flex">
           <div className="flex flex-wrap w-[80vw] sm:ml-[1%] md:ml-[5%] lg:ml-[5%]">
