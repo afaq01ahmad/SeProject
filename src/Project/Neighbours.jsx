@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout/Layout";
 import { Link } from "react-router-dom";
-import { COUNTRIES, COUNTRIESDETAILS, NEIGHBORS } from "./Consants/Links";
+import { COUNTRIESDETAILS, NEIGHBORS } from "./Consants/Links";
 
 const Neighbours = () => {
   const [countries, setCountries] = useState([]);
@@ -69,7 +69,7 @@ const Neighbours = () => {
 
   const mapNeighbours = () => {
     return (
-      <div className="sm:ml-0 md:ml-0 lg:ml-24 flex flex-wrap">
+      <div className="flex flex-wrap">
         {neighbour.map((neighbours, index) => (
           <div key={index}>
             {neighbours.map((country, index) => (
