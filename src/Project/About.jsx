@@ -5,7 +5,7 @@ const About = () => {
     <>
       <Layout>
         <div className="flex burlyWood">
-          <div className="sm:ml-[10px] sm:mt-[20px] md:ml-[50px] text-left">
+          <div className="sm:ml-[10px] sm:mt-[20px] lg:ml-[50px] xl:ml-0 text-left">
             <h1 className="font-bold sm:text-[20px] md:text-2xl">
               About the Website
             </h1>

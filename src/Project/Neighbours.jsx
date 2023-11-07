@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./Layout/Layout";
 import { Link } from "react-router-dom";
-import { COUNTRIES, COUNTRIESDETAILS, NEIGHBORS } from "./Links";
+import { COUNTRIESDETAILS, NEIGHBORS } from "./Consants/Links";
 
 const Neighbours = () => {
   const [countries, setCountries] = useState([]);
   const [neighbour, setNeighbour] = useState([]);
-  const [card, setCard] = useState(null);
+  const [countryCard, setCountryCard] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [renderedNeighbours, setRenderedNeighbours] = useState([]);
+
+  const checkSpecialChar = (input) => {
+    return input.replace(/[^a-zA-Z\s]/g, "");
+  };
 
   const fetchCountries = async () => {
     try {
@@ -29,15 +33,17 @@ const Neighbours = () => {
 
   const handleSearch = async () => {
     setNeighbour([]);
-    setCard(null);
+    setCountryCard(null);
+
+    const trimmedInput = searchInput.trim();
 
     try {
       const res = await fetch(
-        `https://restcountries.com/v3.1/name/${searchInput}`
+        `https://restcountries.com/v3.1/name/${trimmedInput}`
       );
       if (res.ok) {
         const data = await res.json();
-        setCard(data);
+        setCountryCard(data);
         setIsLoading(false);
 
         const arrayData = data?.[0]?.borders;
@@ -66,10 +72,9 @@ const Neighbours = () => {
       setIsLoading(false);
     }
   };
-
   const mapNeighbours = () => {
     return (
-      <div className="sm:ml-0 md:ml-0 lg:ml-24 flex flex-wrap">
+      <div className="flex flex-wrap">
         {neighbour.map((neighbours, index) => (
           <div key={index}>
             {neighbours.map((country, index) => (
@@ -119,13 +124,14 @@ const Neighbours = () => {
             <input
               type="text"
               value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
+              onChange={(e) => setSearchInput(checkSpecialChar(e.target.value))}
               placeholder="Search Country to look for its neighbours"
               className="border p-2 sm:w-50 md:w-96 mb-5"
             />
             <button
               className="ml-2 px-4 py-2 bg-blue-500 mb-5 text-white bg-black rounded"
               onClick={handleSearch}
+              disabled={!searchInput.trim()}
             >
               Search
             </button>

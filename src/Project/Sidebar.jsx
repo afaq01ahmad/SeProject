@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { COUNTRIES, NEIGHBORS } from "./Links";
+import { COUNTRIES, NEIGHBORS } from "./Consants/Links";
 
 const SideBar = () => {
   const [open, setOpen] = useState(true);
