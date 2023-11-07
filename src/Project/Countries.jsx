@@ -11,6 +11,7 @@ const Countries = () => {
 
   const fetchCountries = async () => {
     try {
+      console.log("working");
       const response = await fetch("https://restcountries.com/v3.1/all");
       if (response.ok) {
         const data = await response.json();
