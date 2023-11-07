@@ -11,8 +11,11 @@ const Profile = () => {
     email: "",
     number: "",
     company: "",
-    // Add other form values here
   });
+
+  const correctInput = (input) => {
+    return input.replace(/[^a-zA-Z0-9]/g, "");
+  };
 
   const handleFirstNameChange = (e) => {
     setFormValues({ ...formValues, fname: e.target.value });
@@ -49,7 +52,7 @@ const Profile = () => {
                 type="text"
                 id="fname"
                 name="fname"
-                value={formValues.fname}
+                value={correctInput(formValues.fname)}
                 onChange={handleFirstNameChange}
                 disabled={isDisabled}
                 className="rounded border border-black bg-white p-2  sm:w-[80vw] md:w-[40vw] md:ml-24 lg:ml-[80px] lg:w-[20.5vw]"
